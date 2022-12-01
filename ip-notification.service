@@ -1,0 +1,11 @@
+[Unit]
+Description=Send Ip Address of the pi on bootup through telegram bot
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=python3 /home/ubuntu/codes/startup/send_ip.py
+
+[Install]
+WantedBy=multi-user.target
