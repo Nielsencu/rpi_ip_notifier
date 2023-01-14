@@ -12,7 +12,12 @@ def sendIp(hostname : str, ip : str):
 
     return response.json()
 
-ip = subprocess.run(['hostname', '-I'], stdout=subprocess.PIPE).stdout.decode('utf-8').rstrip('\n')
+def getIp():
+    return subprocess.run(['hostname', '-I'], stdout=subprocess.PIPE).stdout.decode('utf-8').rstrip('\n')
+
+ip = getIp()
+while not ip:
+    ip=getIp()
 hostname = subprocess.run(['hostname'], stdout=subprocess.PIPE).stdout.decode('utf-8').rstrip('\n')
 sent = False
 while not sent:
